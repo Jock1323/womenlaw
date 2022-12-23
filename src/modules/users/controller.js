@@ -63,6 +63,27 @@ const putUsers = async(req,res,next) => {
     next(new customError(500,error.message))
   }
 }
+const checkedUsers = async(req,res,next) => {
+  try {
+    const users = await GET()
+    if (users.length > 0) {
+      res.status(200).json({
+        totalCount:users.length,
+        message: 'checked users',
+        data:users
+      })
+    }
+    else {
+      res.status(400).json({
+        totalCount:users.length,
+        message: 'user not found',
+        data:users
+      })
+    }
+  } catch (error) {
+    next(new customError(500,error.message))
+  }
+}
 export {
   getUsers,
   postUsers,

@@ -34,18 +34,15 @@ BEGIN
 END;
 $$
 CREATE TRIGGER check_user_trigger
-  BEFORE UPDATE
+  AFTER UPDATE
   ON users
   FOR EACH ROW
   EXECUTE PROCEDURE save_check_users();
-  
-
-update users
-set checked='checked'
-where user_id=2;
 
 insert into users(firstname,lastname,fathername,phone,address,problem)values('komila','alijonova','isomiddin qizi','+998901234567','toshkent','need help');
-
+UPDATE users
+set checked='checked'
+where user_id=1;
 
 vds
 vps-->virtual private server
